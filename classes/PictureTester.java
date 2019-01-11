@@ -57,16 +57,32 @@ public class PictureTester
     caterpillar.mirrorVertical();
     caterpillar.explore();
   }
-  
-  /** Method to test mirrorTemple */
 
   public static void testMirrorVerticalRightToLeft()
   {
     Picture redMotorcycle = new Picture("redMotorcycle.jpg");
     redMotorcycle.explore();
-    redMotorcycle.MirrorVerticalRightToLeft();
+    redMotorcycle.mirrorVerticalRightToLeft();
     redMotorcycle.explore();
   }
+
+  public static void testMirrorHorizontal()
+  {
+    Picture redMotorcycle = new Picture("redMotorcycle.jpg");
+    redMotorcycle.explore();
+    redMotorcycle.mirrorHorizontal();
+    redMotorcycle.explore();
+  }
+
+  public static void testMirrorHorizontalBotToTop()
+  {
+    Picture redMotorcycle = new Picture("redMotorcycle.jpg");
+    redMotorcycle.explore();
+    redMotorcycle.mirrorHorizontalBotToTop();
+    redMotorcycle.explore();
+  }
+
+  /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
     Picture temple = new Picture("temple.jpg");
@@ -128,6 +144,8 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-    testMirrorVerticalRightToLeft();
+    //testMirrorVerticalRightToLeft();
+    testMirrorHorizontal();
+    testMirrorHorizontalBotToTop();
   }
 }
