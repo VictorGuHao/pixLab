@@ -90,7 +90,15 @@ public class PictureTester
     temple.mirrorTemple();
     temple.explore();
   }
-  
+
+  public static void testMirrorGull()
+  {
+    Picture temple = new Picture("seagull.jpg");
+    temple.explore();
+    temple.mirrorGull();
+    temple.explore();
+  }
+
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -114,7 +122,7 @@ public class PictureTester
   {
     Picture snowman = new Picture("snowman.jpg");
     snowman.explore();
-    snowman.mirrorVertical();
+    snowman.mirrorArm();
     snowman.explore();
   }
   public static void main(String[] args)
@@ -132,7 +140,7 @@ public class PictureTester
     //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
-    //testMirrorGull();
+    testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
@@ -145,7 +153,7 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
     //testMirrorVerticalRightToLeft();
-    testMirrorHorizontal();
-    testMirrorHorizontalBotToTop();
+    //testMirrorHorizontal();
+    //testMirrorHorizontalBotToTop();
   }
 }
