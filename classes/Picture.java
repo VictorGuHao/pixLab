@@ -205,6 +205,56 @@ public class Picture extends SimplePicture
     }
   }
 
+  public void encode(Picture hiddenPic)
+  {
+
+    Pixel[][] hiddenPixels = hiddenPic.getPixels2D();
+    Pixel[][] pixels= this.getPixels2D();
+    Pixel normalPix = null;
+    Pixel hiddenPix = null;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < pixels[0].length; col++)
+      {
+        normalPix = pixels[row][col];
+        if (normalPix.getRed() % 2 == 1)
+          normalPix.setRed(normalPix.getRed() - 1);
+        hiddenPix = hiddenPixels[row][col];
+        if (hiddenPix.colorDistance(Color.BLACK) < 50)
+        {
+          normalPix.setRed(normalPix.getRed() + 1);
+        }
+      }
+    }
+  }
+
+  public Picture decode()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    int height = pixels.length;
+    int width = pixels[0].length;
+    Pixel normalPix = null;
+    Pixel hiddenPix = null;
+    Picture msgPic = new Picture(height,width);
+    Pixel[][] msgPix = msgPic.getPixels2D();
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < pixels[0].length; col++)
+      {
+        normalPix = pixels[row][col];
+        hiddenPix = msgPix[row][col];
+        if (normalPix.getRed() % 2 == 1)
+        {
+          hiddenPix.setColor(Color.BLACK);
+        }
+      }
+    }
+    return msgPic;
+  }
+
+  
+
+
   public void mirrorHorizontalBotToTop()
   {
     Pixel[][] pixels = this.getPixels2D();
@@ -241,6 +291,28 @@ public class Picture extends SimplePicture
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+
+
+  public void chromakey(Picture other, int red, int green, int blue)
+  {
+    Color theColor = new Color(red,green,blue);
+    Pixel thisPix = null;
+    Pixel otherPix = null;
+    Pixel[][] thisImg = this.getPixels2D();
+    Pixel[][] otherImg = other.getPixels2D();
+    for (int row = 0; row < thisImg.length; row++)
+    {
+      for (int col = 0; col < thisImg[0].length; col++)
+      {
+        thisPix = thisImg[row][col];
+        if (thisPix.colorDistance(Color.BLACK) < 100)
+        {
+          otherPix = otherImg[row][col];
+          thisPix.setColor(otherPix.getColor());
+        }
       }
     }
   }

@@ -134,6 +134,23 @@ public class PictureTester
     snowman.mirrorArm();
     snowman.explore();
   }
+
+  public static void testEncodeAndDecode()
+  {
+    Picture beach = new Picture("beach.jpg");
+    Picture msg = new Picture("msg.jpg");
+    beach.encode(msg);
+    beach.explore();
+    beach.decode().explore();
+  }
+
+  public static void testChromakey()
+  {
+    Picture origin = new Picture("dmc5.jpg");
+    Picture back = new Picture("dmc5-2.jpg");
+    origin.chromakey(back,50,20,150);
+    origin.explore();
+  }
   public static void main(String[] args)
   {
     // uncomment a call here to run a test
@@ -154,7 +171,7 @@ public class PictureTester
     //testCollage();
     //testCopy();
     //testEdgeDetection();
-    testEdgeDetection2();
+    //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
@@ -164,5 +181,7 @@ public class PictureTester
     //testMirrorVerticalRightToLeft();
     //testMirrorHorizontal();
     //testMirrorHorizontalBotToTop();
+    //testEncodeAndDecode();
+    testChromakey();
   }
 }
